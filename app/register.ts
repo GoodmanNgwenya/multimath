@@ -16,7 +16,8 @@ console.log(nickname);
  console.log(email);
   return false; 
 };
-function terms_change(checkbox){
+
+  const checkbox = <HTMLInputElement>document.getElementById('checkboxId');
     if(checkbox.checked){
       var element = <HTMLInputElement> document.getElementById("btnRegister");
       element.disabled = false;
@@ -24,4 +25,3 @@ function terms_change(checkbox){
           var element = <HTMLInputElement> document.getElementById("btnRegister");
           element.disabled = true;
         }
-}
