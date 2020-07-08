@@ -51,6 +51,7 @@ constructor(public player:Player,public problemCount:number,public factor:number
 
         //disable the calculate score button
         document.getElementById('calculate')!.setAttribute('disabled','true');
-
+        
     }
+    
 }

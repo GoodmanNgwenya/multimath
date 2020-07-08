@@ -8,4 +8,5 @@ export class Player implements Person{
     formatName(){
         return this.name.toUpperCase();
     }
+ 
 }

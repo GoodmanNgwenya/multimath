@@ -23,7 +23,9 @@ function postScore(score, playerName) {
     scoreElement.innerText = score + " - " + playerName;
     logger("Score: " + score);
 }
+
 document.getElementById('startGame').addEventListener('click', startGame);
+
 var logMessage = function (message) { return console.log(message); };
 function logError(err) {
     console.error(err);

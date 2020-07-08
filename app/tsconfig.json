@@ -4,7 +4,8 @@
         "removeComments": true,
        "module":"CommonJS",
        "moduleResolution": "node",
-       "traceResolution": true
+       "traceResolution": true,
+       "sourceMap": true,
     },
 "files": [
     "./app.ts"
