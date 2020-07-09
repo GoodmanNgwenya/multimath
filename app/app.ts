@@ -19,11 +19,11 @@ document.getElementById('startGame')!.addEventListener('click',()=>{
 });
 
 document.getElementById('loadInfo')!.addEventListener('click', () => {
-  //var pass: any = document.getElementById('password')?.innerText;
-  //var txtpwd = ( < HTMLTextAreaElement > (document.getElementById('password'))).value
-  var txtpwd = ( < HTMLInputElement > (document.getElementById('password'))).value
+  var txtpwd = (<HTMLInputElement>(document.getElementById('password'))).value
+  var email = (<HTMLInputElement>(document.getElementById('email'))).value
+
   var isPass = ValidatePassword(txtpwd);
-  if (isPass) {
+  if (isPass||ValidateEmail(email)) {
     if ((personalDetails.forename != null || personalDetails.forename != " ") && (personalDetails.surname != null || personalDetails.surname != " ") && (personalDetails.email != null || personalDetails.email != " ") && (personalDetails.password != null || personalDetails.password != " ")) {
       if (personalDetails.password != personalDetails.newPassword) {
         alert("Password do not match");
@@ -72,7 +72,6 @@ document.getElementById('runArray')!.addEventListener('click',() => {
 });
 
 //Validate password
-
 function ValidatePassword(password: String) { 
   var pass = /^[A-Za-z]\w{4,14}$/;
   if (password.match(pass))
@@ -83,6 +82,20 @@ function ValidatePassword(password: String) {
     alert('Incorect passwor! make sure you include special character,aphabet,numeric values and contain 4 to 14 characters');
     return false;
   }
+}
+//Validate Email
+function ValidateEmail(emailText:string)
+{
+var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+if(emailText.match(mailformat))
+{
+return true;
+}
+else
+{
+alert("You have entered an invalid email address! verify your email");
+return false;
+}
 }
 
 //display number greater than 50

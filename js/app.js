@@ -16,8 +16,9 @@ document.getElementById('startGame').addEventListener('click', function () {
 });
 document.getElementById('loadInfo').addEventListener('click', function () {
     var txtpwd = (document.getElementById('password')).value;
+    var email = (document.getElementById('email')).value;
     var isPass = ValidatePassword(txtpwd);
-    if (isPass) {
+    if (isPass || ValidateEmail(email)) {
         if ((personalDetails.forename != null || personalDetails.forename != " ") && (personalDetails.surname != null || personalDetails.surname != " ") && (personalDetails.email != null || personalDetails.email != " ") && (personalDetails.password != null || personalDetails.password != " ")) {
             if (personalDetails.password != personalDetails.newPassword) {
                 alert("Password do not match");
@@ -63,6 +64,16 @@ function ValidatePassword(password) {
     }
     else {
         alert('Incorect passwor! make sure you include special character,aphabet,numeric values and contain 4 to 14 characters');
+        return false;
+    }
+}
+function ValidateEmail(emailText) {
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (emailText.match(mailformat)) {
+        return true;
+    }
+    else {
+        alert("You have entered an invalid email address! verify your email");
         return false;
     }
 }
