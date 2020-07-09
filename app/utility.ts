@@ -1,7 +1,8 @@
 function getInputValue(elementID:string):string {
 
         const inputElement: HTMLInputElement =<HTMLInputElement> document.getElementById(elementID);
-            return inputElement.value;
+        console.log(inputElement.value);
+        return inputElement.value;
     }
 
     function logger(message:string):void{

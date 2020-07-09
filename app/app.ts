@@ -1,11 +1,11 @@
 import {Player} from './player';
-import {Game}from './game';
+import { Game } from './game';
+import { User } from './user';
 import * as Helpers from './utility';
-// import { Register } from './register';
-import { PersonalDetails } from './personalDetails';
 
+const  personalDetails:User=new User();
 let newGame:Game;
-let personalDetails: PersonalDetails;
+
 //add click handle to the start game button
 document.getElementById('startGame')!.addEventListener('click',()=>{
   const player:Player=new Player();
@@ -18,60 +18,37 @@ document.getElementById('startGame')!.addEventListener('click',()=>{
  
 });
 
-//add click handle to the start checkbox
-document.getElementById('myCheck')!.addEventListener('click', () => {
+document.getElementById('loadInfo')!.addEventListener('click', () => {
 
-  var element = <HTMLInputElement> document.getElementById("btnRegister");
-  var checkBox = <HTMLInputElement>document.getElementById("myCheck");
-  
-  element.disabled = !checkBox.checked;
-  checkBox.onclick = () => {
-     element.disabled = !checkBox.checked;
-  }
-
-  // personalDetails.surname = formData.get('surname') as string;
-  // personalDetails.nickname = formData.get('nickname') as string;
-  // personalDetails.email = formData.get('email') as string;
-  // personalDetails.password = formData.get('password') as string;
-  // personalDetails.newPassword = formData.get('newpassword') as string;
-    //  console.log("Forenames "+personalDetails.forename);
-    //   console.log("Surname "+personalDetails.surname);
-    //   console.log("Nickname "+personalDetails.nickname);
-    //   console.log("Email "+personalDetails.email);
-}); 
-
-document.getElementById('btnRegister')!.addEventListener('click', () => {
-
-  const register = <HTMLFormElement>document.querySelector('#registerform');
-  const formData = new FormData(register);
-  const forename = formData.get('forenames') as string;
-  const surname = formData.get('surname') as string;
-  const nickname = formData.get('nickname') as string;
-  const email = formData.get('email') as string;
-  const password = formData.get('password') as string;
-  const newPassword = formData.get('newpassword') as string;
-
-  if ((forename != null || forename != " ") &&(surname != null || surname != " ") &&(email != null || email != " ") &&(password != null || password != " "))
+  if ((personalDetails.forename != null || personalDetails.forename != " ") &&(personalDetails.surname != null || personalDetails.surname != " ") &&(personalDetails.email != null || personalDetails.email != " ") &&(personalDetails.password != null || personalDetails.password != " "))
   {
-          if (password != newPassword){
+          if (personalDetails.password !=personalDetails. newPassword){
             alert("Password do not match");
         }
         else {
-            console.log("Forenames " + forename);
-            console.log("Surname " + surname);
-            console.log("Nickname " + nickname);
-            console.log("Email " + email);
+          personalDetails.forename = Helpers.getValue('forename');
+          personalDetails.nickname= Helpers.getValue('nickname');
+          personalDetails.surname = Helpers.getValue('surname');
+          personalDetails.email = Helpers.getValue('email');
         }
   }
   else {
     alert("Input field required");
   }
+  
 });
 
-// const inputElement: HTMLInputElement = document.getElementById('myCheck') as HTMLInputElement;
-// inputElement.addEventListener("checked", () => {
-//   alert("checked");
-// });
+
+//add click handle to the start checkbox
+
+document.getElementById('isLocked')!.addEventListener('click', () => {
+  var element = <HTMLInputElement> document.getElementById("loadInfo");
+  var checkBox = <HTMLInputElement>document.getElementById("isLocked");
+  element.disabled = !checkBox.checked;
+  checkBox.onclick = () => {
+    element.disabled = !checkBox.checked;
+  }
+});
 
 //add click handler to the calculate score button
 document.getElementById('calculate')!.addEventListener('click',() => {
@@ -79,8 +56,7 @@ document.getElementById('calculate')!.addEventListener('click',() => {
 });
 
 //call all the array function
-function runArrayMethod()
-{
+document.getElementById('runArray')!.addEventListener('click',() => {
   numAboveFifty();
   replaceName(); 
   removeAdam();
@@ -90,7 +66,7 @@ function runArrayMethod()
   myIndexOf();
   myUnshift();
   ConcatTwoArray();
-}
+});
 
 //display number greater than 50
 var nums = [89, 5, 56, 102,7];
@@ -99,6 +75,7 @@ function checkNum(num:any) {
 }
 
 function numAboveFifty() {
+  console.log("Number greater than 50 in an array");
   console.log(nums.filter(checkNum));
 }
 
@@ -107,6 +84,7 @@ var names = ["John", "Sarah", "Beth", "Adam","Peter"];
 
 function replaceName() {
   names.splice(2, 2, "Cindy", "Zoe");
+  console.log("replace Beth and Adam ");
   console.log(names);
 }
 
@@ -114,7 +92,8 @@ function replaceName() {
 var names = ["John", "Sarah", "Beth", "Adam","Peter"];
 
 function removeAdam() {
-  names.splice(3,1);
+  names.splice(3, 1);
+  console.log("remove Adam from the array")
   console.log(names);
 }
 
@@ -123,14 +102,15 @@ var removeLastNum = [89,5,56,102,7];
 
 function removeLastNumber() {
   removeLastNum.pop();
-  alert(removeLastNum);
+  console.log(removeLastNum);
 }
 
 //slice method to create a new array
 var names = ["John", "Sarah", "Beth", "Adam", "Peter"];
 
 function myFunction() {
-  names.splice(0,5,"Sarah", "Beth", "Adam");
+  names.splice(0, 5, "Sarah", "Beth", "Adam");
+  console.log("remove last Number using pop");
   console.log(names);
 }
 
@@ -139,13 +119,13 @@ var pushNum = [89,5,56,102,7];
 
 function pushNumber() {
   pushNum.push(78);
-  alert(pushNum);
+  console.log(pushNum);
 }
 
 //indexOf 5
 function myIndexOf() {
-  var index = [89,5,56,102,7].indexOf(5); 
-  alert("index is : " + index );
+  var index = [89, 5, 56, 102, 7].indexOf(5); 
+  console.log("index is : " + index );
   }
 
   //unshift method
