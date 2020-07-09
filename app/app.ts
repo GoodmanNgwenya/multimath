@@ -19,25 +19,28 @@ document.getElementById('startGame')!.addEventListener('click',()=>{
 });
 
 document.getElementById('loadInfo')!.addEventListener('click', () => {
-
-  if ((personalDetails.forename != null || personalDetails.forename != " ") &&(personalDetails.surname != null || personalDetails.surname != " ") &&(personalDetails.email != null || personalDetails.email != " ") &&(personalDetails.password != null || personalDetails.password != " "))
-  {
-          if (personalDetails.password !=personalDetails. newPassword){
-            alert("Password do not match");
-        }
-        else {
-          personalDetails.forename = Helpers.getValue('forename');
-          personalDetails.nickname= Helpers.getValue('nickname');
-          personalDetails.surname = Helpers.getValue('surname');
-          personalDetails.email = Helpers.getValue('email');
-        }
-  }
-  else {
-    alert("Input field required");
+  //var pass: any = document.getElementById('password')?.innerText;
+  //var txtpwd = ( < HTMLTextAreaElement > (document.getElementById('password'))).value
+  var txtpwd = ( < HTMLInputElement > (document.getElementById('password'))).value
+  var isPass = ValidatePassword(txtpwd);
+  if (isPass) {
+    if ((personalDetails.forename != null || personalDetails.forename != " ") && (personalDetails.surname != null || personalDetails.surname != " ") && (personalDetails.email != null || personalDetails.email != " ") && (personalDetails.password != null || personalDetails.password != " ")) {
+      if (personalDetails.password != personalDetails.newPassword) {
+        alert("Password do not match");
+      }
+      else {
+        personalDetails.forename = Helpers.getValue('forename');
+        personalDetails.nickname = Helpers.getValue('nickname');
+        personalDetails.surname = Helpers.getValue('surname');
+        personalDetails.email = Helpers.getValue('email');
+      }
+    }
+    else {
+      alert("Input field required");
+    }
   }
   
 });
-
 
 //add click handle to the start checkbox
 
@@ -67,6 +70,20 @@ document.getElementById('runArray')!.addEventListener('click',() => {
   myUnshift();
   ConcatTwoArray();
 });
+
+//Validate password
+
+function ValidatePassword(password: String) { 
+  var pass = /^[A-Za-z]\w{4,14}$/;
+  if (password.match(pass))
+  {
+    return true;
+  }
+  else {
+    alert('Incorect passwor! make sure you include special character,aphabet,numeric values and contain 4 to 14 characters');
+    return false;
+  }
+}
 
 //display number greater than 50
 var nums = [89, 5, 56, 102,7];
