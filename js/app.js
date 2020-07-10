@@ -21,7 +21,7 @@ document.getElementById('loadInfo').addEventListener('click', function () {
     var forename = (document.getElementById('forename')).value;
     var surname = (document.getElementById('surname')).value;
     if ((forename.length == 0 || forename.length < 1) || (surname.length == 0 || surname.length < 2)) {
-        alert("Make sure you fill all the required field and Note forenames contains one or more characters and Surname two or more");
+        console.error("Make sure you fill all the required field and Note forenames contains one or more characters and Surname two or more");
     }
     else {
         if (txtpwd == txtnewpassword) {
@@ -33,7 +33,7 @@ document.getElementById('loadInfo').addEventListener('click', function () {
             }
         }
         else {
-            alert("Password do not match");
+            console.error("Password do not match");
         }
     }
 });
@@ -62,28 +62,31 @@ document.getElementById('runArray').addEventListener('click', function () {
 function ValidatePassword(password) {
     var pass = /^[A-Za-z]\w{4,14}$/;
     if (password.match(pass)) {
+        console.log("Validated");
         return true;
     }
     else {
-        alert('Incorect password! make sure you include special character,aphabet,numeric values and contain 4 to 14 characters');
+        console.error('Incorect password! make sure you include special character,aphabet,numeric values and contain 4 to 14 characters');
         return false;
     }
 }
 function ValidateEmail(emailText) {
     var mailformat = /^(?=[^@]{4,}@)([\w\.-]*[a-zA-Z0-9_]@(?=.{4,}\.[^.]*$)[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z])$/;
     if (emailText.match(mailformat)) {
+        console.log("Validated");
         return true;
     }
     else {
-        alert("You have entered an invalid email address! make sure it contans four or more character long");
+        console.error("You have entered an invalid email address! make sure it contans four or more character long");
         return false;
     }
 }
 function requiredField(inputValue) {
     if (inputValue.length == 0) {
-        alert("Check all required field*");
+        console.error("Check all required field*");
         return false;
     }
+    console.log("Validated");
     return true;
 }
 var nums = [89, 5, 56, 102, 7];
