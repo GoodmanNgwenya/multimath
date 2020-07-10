@@ -21,10 +21,15 @@ document.getElementById('startGame')!.addEventListener('click',()=>{
 document.getElementById('loadInfo')!.addEventListener('click', () => {
   var txtpwd = (<HTMLInputElement>(document.getElementById('password'))).value
   var email = (<HTMLInputElement>(document.getElementById('email'))).value
-
-  var isPass = ValidatePassword(txtpwd);
-  if (isPass||ValidateEmail(email)) {
-    if ((personalDetails.forename != null || personalDetails.forename != " ") && (personalDetails.surname != null || personalDetails.surname != " ") && (personalDetails.email != null || personalDetails.email != " ") && (personalDetails.password != null || personalDetails.password != " ")) {
+  var forename = (<HTMLInputElement>(document.getElementById('forename'))).value
+  var surname = (<HTMLInputElement>(document.getElementById('surname'))).value
+  
+  //var isPass = ValidatePassword(txtpwd);
+  if ((forename.length == 0 || forename.length < 1) || (surname.length == 0 || surname.length < 2)) {
+    alert("Make sure you fill all the required field and Note forenames contains one or more characters and Surname two or more");
+  }
+  else {
+    if (ValidatePassword(txtpwd) && ValidateEmail(email)) {
       if (personalDetails.password != personalDetails.newPassword) {
         alert("Password do not match");
       }
@@ -35,11 +40,7 @@ document.getElementById('loadInfo')!.addEventListener('click', () => {
         personalDetails.email = Helpers.getValue('email');
       }
     }
-    else {
-      alert("Input field required");
-    }
   }
-  
 });
 
 //add click handle to the start checkbox
@@ -79,7 +80,7 @@ function ValidatePassword(password: String) {
     return true;
   }
   else {
-    alert('Incorect passwor! make sure you include special character,aphabet,numeric values and contain 4 to 14 characters');
+    alert('Incorect password! make sure you include special character,aphabet,numeric values and contain 4 to 14 characters');
     return false;
   }
 }
@@ -97,6 +98,17 @@ alert("You have entered an invalid email address! verify your email");
 return false;
 }
 }
+
+//Validate Empty field
+function requiredField(inputValue:string) 
+{
+  if (inputValue.length == 0)
+   { 
+      alert("Check all required field*");  	
+      return false; 
+   }  	
+   return true; 
+ } 
 
 //display number greater than 50
 var nums = [89, 5, 56, 102,7];
