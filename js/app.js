@@ -16,6 +16,7 @@ document.getElementById('startGame').addEventListener('click', function () {
 });
 document.getElementById('loadInfo').addEventListener('click', function () {
     var txtpwd = (document.getElementById('password')).value;
+    var txtnewpassword = (document.getElementById('newPassword')).value;
     var email = (document.getElementById('email')).value;
     var forename = (document.getElementById('forename')).value;
     var surname = (document.getElementById('surname')).value;
@@ -23,16 +24,16 @@ document.getElementById('loadInfo').addEventListener('click', function () {
         alert("Make sure you fill all the required field and Note forenames contains one or more characters and Surname two or more");
     }
     else {
-        if (ValidatePassword(txtpwd) && ValidateEmail(email)) {
-            if (personalDetails.password != personalDetails.newPassword) {
-                alert("Password do not match");
-            }
-            else {
+        if (txtpwd == txtnewpassword) {
+            if (ValidatePassword(txtpwd) && ValidateEmail(email)) {
                 personalDetails.forename = Helpers.getValue('forename');
                 personalDetails.nickname = Helpers.getValue('nickname');
                 personalDetails.surname = Helpers.getValue('surname');
                 personalDetails.email = Helpers.getValue('email');
             }
+        }
+        else {
+            alert("Password do not match");
         }
     }
 });
@@ -69,12 +70,12 @@ function ValidatePassword(password) {
     }
 }
 function ValidateEmail(emailText) {
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    var mailformat = /^(?=[^@]{4,}@)([\w\.-]*[a-zA-Z0-9_]@(?=.{4,}\.[^.]*$)[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z])$/;
     if (emailText.match(mailformat)) {
         return true;
     }
     else {
-        alert("You have entered an invalid email address! verify your email");
+        alert("You have entered an invalid email address! make sure it contans four or more character long");
         return false;
     }
 }
