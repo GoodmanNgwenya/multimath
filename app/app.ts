@@ -187,10 +187,11 @@ function myUnshift() {
 
 //Concat two string
 function ConcatTwoArray() {
-  var num = [1, 2,3];
+  var num = [1, 2, 3];
+  var numConcat = num.map(String);
   var alpha = ["a", "b", "c"];
-  //var numABC = num.concat(alpha); 
- // console.log(numABC);
+  var numABC = numConcat.concat(alpha); 
+ console.log("Two concatinated array: "+numABC);
 }
 
 
